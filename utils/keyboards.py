@@ -1,5 +1,3 @@
-# utils/keyboards.py
-
 from telegram import ReplyKeyboardMarkup, KeyboardButton
 
 def get_start_keyboard():
@@ -7,11 +5,12 @@ def get_start_keyboard():
     keyboard = ReplyKeyboardMarkup(
         keyboard=[
             [
-                KeyboardButton(" Запустить бота"),
-                KeyboardButton(" Статистика"),
+                KeyboardButton("🌦️ Погода"),
+                KeyboardButton("📊 Статистика"),
             ],
         ],
-        resize_keyboard=True,
+        resize_keyboard=True,  # Клавиатура уменьшается под размер кнопок
+        one_time_keyboard=False  # Клавиатура не исчезает автоматически после нажатия
     )
     return keyboard
 

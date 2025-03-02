@@ -1,14 +1,14 @@
 # dictionaries/text_actions.py
 
 from handlers.user_handlers import (
-    handle_start,
-    handle_help
+    handle_get_weather,
+    handle_statistic
 )
 
 TEXT_ACTIONS = {
 
     # Действия для пользователя
-    "🔔 Запустить бота": handle_start,
-    "📊 Статистика": handle_help,
+    "🌦️ Погода": handle_get_weather,
+    "📊 Статистика": handle_statistic,
 
 }

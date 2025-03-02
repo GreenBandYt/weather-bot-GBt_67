@@ -1,15 +1,14 @@
 # dictionaries/callback_actions.py
 
 from handlers.user_handlers import (
-    handle_weather,
+    handle_get_weather,  # Исправлено
     handle_set_city,
-    handle_statistic,
-
+    handle_details,
 )
 
 CALLBACK_ACTIONS = {
-    "weather": handle_weather,
+    "weather": handle_get_weather,  # Исправлено
     "set_city": handle_set_city,
-    "statistic": handle_statistic,
-
+    "details": handle_details,  # Добавляем обработчик для кнопки "Подробно"
 }
+
