@@ -1,9 +1,9 @@
 import logging
-from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, CallbackQueryHandler # Добавляем импорт
+from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, CallbackQueryHandler
 from telegram import Update
 from telegram.ext import ContextTypes
 
-from handlers.message_handlers import handle_user_input, handle_inline_buttons # Добавляем импорт handle_inline_buttons
+from handlers.message_handlers import handle_user_input, handle_inline_buttons
 from handlers.user_handlers import set_user_state
 from utils.keyboards import get_start_keyboard
 from config import BOT_TOKEN
