@@ -90,6 +90,8 @@ async def handle_details(update: Update, context: ContextTypes.DEFAULT_TYPE):
         card += f"🕒 Время: {timestamp}"
         await context.bot.send_message(chat_id=update.effective_chat.id, text=card)
 
+from datetime import datetime, timedelta
+
 async def get_weather(city):
     url = f'https://api.openweathermap.org/data/2.5/weather?q={city}&appid={GBt_key}&units=metric&lang=ru'
     try:
@@ -108,14 +110,17 @@ async def get_weather(city):
                 pressure_mmHg = round(pressure * 0.75006)
                 sunrise = data['sys']['sunrise']
                 sunset = data['sys']['sunset']
-                dt = data['dt']  # Текущая временная метка от API
+                dt = data['dt']  # Текущая временная метка от API (в UTC)
                 timezone = data['timezone']  # Смещение часового пояса в секундах
 
                 # Вычисляем текущее время в городе
-                current_time = datetime.fromtimestamp(dt + timezone).strftime('%H:%M:%S')
+                current_time_utc = datetime.utcfromtimestamp(dt)  # Преобразуем dt в UTC
+                current_time_local = current_time_utc + timedelta(seconds=timezone)  # Добавляем смещение
+                current_time = current_time_local.strftime('%H:%M:%S')
 
-                sunrise_time = datetime.fromtimestamp(sunrise).strftime('%H:%M:%S')
-                sunset_time = datetime.fromtimestamp(sunset).strftime('%H:%M:%S')
+                # Преобразуем время восхода и заката с учетом часового пояса
+                sunrise_time = (datetime.utcfromtimestamp(sunrise) + timedelta(seconds=timezone)).strftime('%H:%M:%S')
+                sunset_time = (datetime.utcfromtimestamp(sunset) + timedelta(seconds=timezone)).strftime('%H:%M:%S')
 
                 return {
                     "city_name": city_name,
