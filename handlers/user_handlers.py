@@ -29,7 +29,7 @@ async def handle_get_weather(update: Update, context: ContextTypes.DEFAULT_TYPE)
     if isinstance(weather_data, dict):
         await context.bot.send_message(chat_id=update.effective_chat.id,
                                        text=f"🌆 Город: {weather_data['city_name']}\n"
-                                            f"🕒 Текущее время: {weather_data['current_time']}\n"  # Добавлено текущее время
+                                            f"🕒 Время в городе: {weather_data['current_time']}\n"  # Добавлено текущее время
                                             f"🌡️ Температура: {weather_data['temperature']}°C\n"
                                             f"🤗 Ощущается как: {weather_data['feels_like']}°C\n"
                                             f"☁️ Погодные условия: {weather_data['description']}\n"
@@ -171,7 +171,7 @@ async def process_city_input(update: Update, context: ContextTypes.DEFAULT_TYPE)
     weather_data = await get_weather(city)
     if isinstance(weather_data, dict):
         response = (f"🌆 Город: {weather_data['city_name']}\n"
-                    f"🕒 Текущее время: {weather_data['current_time']}\n"  # Добавлено текущее время
+                    f"🕒 Время в городе: {weather_data['current_time']}\n"  # Добавлено текущее время
                     f"🌡️ Температура: {weather_data['temperature']}°C\n"
                     f"🤗 Ощущается как: {weather_data['feels_like']}°C\n"
                     f"☁️ Погодные условия: {weather_data['description']}\n"
